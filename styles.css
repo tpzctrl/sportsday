@@ -1,0 +1,77 @@
+/* General page styles with a darker theme */
+body {
+  font-family: Kanit, sans-serif;
+  background-color: #121212; /* Dark background */
+  color: #e0e0e0; /* Light text color for readability */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 4em; /* Larger heading for big screens */
+  color: #ffffff;; /* White for high contrast */
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Container for team cards */
+#team-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Spacing between cards */
+  width: 100%;
+  max-width: 1400px;
+}
+
+/* Team card styles with darker background and wider layout */
+.team-card {
+  flex: 1 1 40%; /* Wider cards */
+  max-width: 600px; /* Limit max width */
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: #ffffff; /* White text for high contrast */
+  font-size: 1.5em; /* Larger font for readability */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Slight shadow for depth */
+  background-color: #333333; /* Dark grey background */
+}
+
+.team-card h2 {
+  font-size: 2.2em; /* Larger font for team name */
+  margin-bottom: 20px;
+}
+
+.team-card p {
+  font-size: 1.3em; /* Larger font for clarity */
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* Highlight for seat info */
+.team-card span {
+  font-size: 1.6em; /* Slightly larger for emphasis */
+  font-weight: bold; /* Light yellow background for contrast */
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+/* Team-specific colors for dark background */
+#Red { background-color: #8b0000; } /* Dark Red */
+#Blue { background-color: #1e3a8a; } /* Dark Blue */
+#Green { background-color: #006400; } /* Dark Green */
+#Purple { background-color: #4b0082; } /* Dark Purple */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .team-card {
+    flex: 1 1 100%; /* Full width on smaller screens */
+    max-width: none;
+  }
+  h1 {
+    font-size: 3em; /* Adjust heading size for smaller screens */
+  }
+}
