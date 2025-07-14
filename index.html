@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Day 53 - Home</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+  <script defer src="/__/firebase/11.0.1/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/11.0.1/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  
+  <style>
+    /* General Styling - Matching the theme of the other pages */
+    body {
+      font-family: 'Kanit', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #121212; /* Dark background */
+      color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #1e1e1e;
+      padding: 40px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #ffffff;
+    }
+
+    .navigation {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-link {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      padding: 15px 20px;
+      font-size: 1.2em;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Specific colors based on provided CSS files */
+    .link-dashboard {
+      background-color: #555; /* Neutral color for dashboard */
+    }
+
+    .link-red {
+      background-color: #8b0000; /* From desk.css */
+    }
+
+    .link-green {
+      background-color: #006400; /* From green.css */
+    }
+
+    .link-blue {
+      background-color: #1e3a8a; /* From blue.css */
+    }
+
+    .link-purple {
+      /* Assuming purple color as it wasn't provided, using a standard dark purple */
+      background-color: #4b0082; 
+    }
+
+    footer {
+        margin-top: 30px;
+        font-size: 0.9em;
+        color: #aaaaaa;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2em;
+      }
+      .container {
+        padding: 20px;
+      }
+      .nav-link {
+        font-size: 1em;
+        padding: 12px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sports Day 53 Navigation</h1>
+    
+    <div class="navigation">
+      <a href="dashboard.html" class="nav-link link-dashboard">📊 Dashboard</a>
+      <a href="teamA.html" class="nav-link link-red">🔴 Red Team Desk</a>
+      <a href="teamB.html" class="nav-link link-green">🟢 Green Team Desk</a>
+      <a href="teamC.html" class="nav-link link-blue">🔵 Blue Team Desk</a>
+      <a href="teamD.html" class="nav-link link-purple">🟣 Purple Team Desk</a>
+    </div>
+
+    <footer>
+        <p>made by @tpzzzzzz._ ♥️</p>
+    </footer>
+  </div>
+</body>
+</html>

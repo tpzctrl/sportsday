@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped:wght@100;200;300;400;500;600;700&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <title>Gree Desk</title>
+  <link rel="stylesheet" href="css/green.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+  <div class="desk-container">
+    <h1>Green Desk</h1>
+    <div class="team-info">
+      <p>Total Seats: <span id="totalSeats"></span></p>
+      <p>Full Seats: <span id="fullSeats"></span></p>
+      <p>Remaining Seats: <span id="remainingSeats"></span></p>
+    </div>
+    <div class="button-container">
+      <button class="update-button" onclick="incrementSeat()">+1 Seat</button>
+      <button class="update-button" onclick="decrementSeat()">-1 Seat</button> <!-- New decrement button -->
+    </div>
+    <h2>อย่ากดรัวนะครับ ระบบแค่ Delay นิดหน่อย</h2>
+    <p>made by @tpzzzzzz._ ♥️ </p>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCJ98IGfjXMTO1FXNMpKDXUCMWIpOGYESc",
+      authDomain: "sportsday53-4a5dc.firebaseapp.com",
+      projectId: "sportsday53-4a5dc",
+      storageBucket: "sportsday53-4a5dc.firebasestorage.app",
+      messagingSenderId: "988775311654",
+      appId: "1:988775311654:web:0dc6c3fecd8417111eb9e7"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Reference to the Firestore document for Team Red
+    const teamRef = db.collection("teams").doc("Green");
+
+    // Functlarge;on to listen for real-time updates on Team Red's data
+    function loadTeamData() {
+      teamRef.onSnapshot((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          document.getElementById("totalSeats").textContent = data.totalSeats;
+          document.getElementById("fullSeats").textContent = data.fullSeats;
+          document.getElementById("remainingSeats").textContent = data.remainingSeats;
+        }
+      });
+    }
+
+    // Function to increment full seats by 1 and decrease remaining seats by 1
+    async function incrementSeat() {
+      await db.runTransaction(async (transaction) => {
+        const teamDoc = await transaction.get(teamRef);
+        if (teamDoc.exists) {
+          const data = teamDoc.data();
+          const newFullSeats = data.fullSeats + 1;
+          const newRemainingSeats = data.remainingSeats - 1;
+
+          // Check if there are seats remaining
+          if (newRemainingSeats >= 0) {
+            transaction.update(teamRef, {
+              fullSeats: newFullSeats,
+              remainingSeats: newRemainingSeats
+            });
+          } else {
+            alert("No seats remaining!");
+          }
+        }
+      });
+    }
+
+    // Function to decrement full seats by 1 and increase remaining seats by 1
+    async function decrementSeat() {
+      await db.runTransaction(async (transaction) => {
+        const teamDoc = await transaction.get(teamRef);
+        if (teamDoc.exists) {
+          const data = teamDoc.data();
+          const newFullSeats = data.fullSeats - 1;
+          const newRemainingSeats = data.remainingSeats + 1;
+
+          // Check if fullSeats is above 0 before decrementing
+          if (newFullSeats >= 0) {
+            transaction.update(teamRef, {
+              fullSeats: newFullSeats,
+              remainingSeats: newRemainingSeats
+            });
+          } else {
+            alert("Cannot reduce seats below zero!");
+          }
+        }
+      });
+    }
+
+    // Load team data on page load
+    loadTeamData();
+  </script>
+</body>
+</html>
